@@ -3,22 +3,14 @@ services:
     image: ${image}
     restart: ${restart}
     ports:
-      # These ports are in format <host-port>:<container-port>
-    - ${ext_httpport}:${ext_httpport}    # 80:80  Public HTTP Port
-    - ${ext_httpsport}:${ext_httpport} # 443:443  Public HTTPS Port
-    - ${ext_manport}:${ext_manport}    # 81:81  Admin Web Port
-      # Add any other Stream port you want to expose
-      # - '21:21' # FTP
-      # - '22:22'
-    # Uncomment the next line if you uncomment anything in the section
+    - ${ext_httpport}:${ext_httpport}
+    - ${ext_httpsport}:${ext_httpport}
+    - ${ext_manport}:${ext_manport}
     environment:
-      # Uncomment this if you want to change the location of 
-      # the SQLite DB file within the container
-       DB_SQLITE_FILE: ${DB_SQLITE_FILE}
-      # Uncomment this if IPv6 is not enabled on your host
-       DISABLE_IPV6: 'true'
+      DB_SQLITE_FILE: ${DB_SQLITE_FILE}
+      DISABLE_IPV6: 'true'
     volumes:
-      - data:/data
-      - /var/lib/docker/volumes/cus-npm2/letsencrypt:/etc/letsencrypt
+    - data:/data
+    - /var/lib/docker/volumes/cus-npm2/letsencrypt:/etc/letsencrypt
 volumes:
-  data:
+  data: null
